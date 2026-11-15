@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+- **Updating from 0.2 works.** The language now defaults to English, what
+  0.2 spoke. 0.3.0 had no default, and the update failed: the Supervisor
+  restarts the app after updating it, and refused to without a language.
+  The app was updated all the same, and stopped; picking a language on its
+  Configuration tab starts it again.
+
 ## 0.3.0
 
 - **The app's language is picked on its Configuration tab, and it has no

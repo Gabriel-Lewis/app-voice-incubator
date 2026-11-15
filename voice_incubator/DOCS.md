@@ -11,8 +11,8 @@ everything the app does, page by page.
 
 ## Getting started
 
-1. **Pick its language** on the app's Configuration tab: it won't start
-   without one.
+1. **Pick its language** on the app's Configuration tab, if it isn't
+   English (the default).
 2. **Start the app.** The first time, it downloads its speech models -- about
    530 MB in English: Parakeet (speech), EmbeddingGemma 2 (meaning), GLiNER
    (the command fallback) and Piper's Kristin (its voice); in another

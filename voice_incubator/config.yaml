@@ -31,12 +31,15 @@ panel_title: Voice Incubator
 discovery:
   - wyoming
 options:
+  # English, what 0.2 spoke. Without a default, an update from 0.2 failed:
+  # the Supervisor restarts the app after updating it, and the options it
+  # kept from 0.2 had no language.
+  language: en
   speaker_threshold: 0.45
   silence_seconds: 1.0
   wyoming_port: 10800
   debug_logging: false
 schema:
-  # Required, with no default: the app won't start until one is picked.
   language: list(en|de|es|fr|it|nl|pl|ru|uk)
   wake_cutoff: float(0.05,1)?
   speaker_threshold: float(0,1)
