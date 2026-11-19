@@ -6,4 +6,14 @@
 # Home Assistant through the Supervisor with SUPERVISOR_TOKEN.
 # ==============================================================================
 cd /usr/src/voice_incubator || bashio::exit.nok "The app's code is missing from /usr/src/voice_incubator"
-exec python3 -m voice_incubator --data-dir /data --http-port 8099
+
+# The web UI's port: one the Supervisor picks (ingress_port: 0), since the app
+# shares the host's network and a fixed one can be taken by another app. The
+# health check (the Dockerfile) reads it back from /run.
+port=$(bashio::app.ingress_port)
+if ! [[ "${port}" =~ ^[1-9][0-9]*$ ]]; then
+    bashio::exit.nok "The Supervisor gave the app no port for its web UI"
+fi
+echo "${port}" > /run/voice_incubator_http_port
+
+exec python3 -m voice_incubator --data-dir /data --http-port "${port}"

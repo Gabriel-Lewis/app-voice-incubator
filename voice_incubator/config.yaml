@@ -22,7 +22,9 @@ map:
 backup_exclude:
   - "*/uv-cache"
   - "*/models/wake-training"
-ingress_port: 8099
+# 0: the Supervisor picks a free port each start (the app shares the host's
+# network, where 8099 may be taken); the s6 run script reads it.
+ingress_port: 0
 panel_icon: mdi:account-voice
 panel_title: Voice Incubator
 # Home Assistant's pipelines: the app's speech-to-text, text-to-speech and

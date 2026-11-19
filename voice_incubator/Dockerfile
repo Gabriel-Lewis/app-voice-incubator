@@ -147,8 +147,9 @@ RUN python3 -m voice_incubator.downloads link /data/models
 WORKDIR /
 COPY rootfs /
 
+# The web UI's port is the Supervisor's pick, written by the s6 run script.
 HEALTHCHECK --start-period=10m \
-    CMD curl -sf http://127.0.0.1:8099/health > /dev/null || exit 1
+    CMD curl -sf "http://127.0.0.1:$(cat /run/voice_incubator_http_port)/health" > /dev/null || exit 1
 
 LABEL \
     org.opencontainers.image.title="Home Assistant App: Voice Incubator" \
